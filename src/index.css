@@ -92,7 +92,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-colors duration-200;
   }
 
   body {
@@ -111,11 +111,11 @@
   }
 
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20;
+    @apply bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10;
   }
 
   .glass-strong {
-    @apply bg-white/90 backdrop-blur-2xl border border-white/30 shadow-lg;
+    @apply bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl border border-white/30 dark:border-white/10 shadow-lg;
   }
 
   .text-gradient {
