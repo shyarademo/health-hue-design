@@ -14,9 +14,9 @@ const floatingIcons = [
 ];
 
 const stats = [
-  { value: 15000, suffix: "+", label: "Patients Treated" },
-  { value: 25, suffix: "+", label: "Years Experience" },
-  { value: 40, suffix: "+", label: "Expert Doctors" },
+  { value: 20000, suffix: "+", label: "Patients Annually" },
+  { value: 22, suffix: "+", label: "Years in Bengaluru" },
+  { value: 25, suffix: "+", label: "Specialist Doctors" },
   { value: 98, suffix: "%", label: "Patient Satisfaction" },
 ];
 
@@ -105,7 +105,7 @@ const HeroSection = () => {
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse-gentle" />
-              Trusted Healthcare Since 1999
+              Trusted Healthcare Since 2002 — Bengaluru
             </span>
           </motion.div>
 
@@ -138,7 +138,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Experience compassionate healthcare with cutting-edge technology.
+            NABH-accredited multi-specialty clinic in Koramangala, Bengaluru.
             Your wellness journey begins with a team that truly listens.
           </motion.p>
 
