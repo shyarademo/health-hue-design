@@ -19,7 +19,7 @@ const TestimonialsSection = () => {
   const prev = () => setCurrent((p) => (p - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section id="testimonials" className="section-padding bg-secondary/30" ref={ref}>
+    <section id="testimonials" className="section-padding bg-secondary/30 scroll-mt-20" ref={ref}>
       <motion.div
         className="text-center mb-16"
         initial={{ opacity: 0, y: 30 }}

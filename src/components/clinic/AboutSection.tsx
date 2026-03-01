@@ -22,7 +22,7 @@ const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="section-padding overflow-hidden" ref={ref}>
+    <section id="about" className="section-padding overflow-hidden scroll-mt-20" ref={ref}>
       {/* Section header */}
       <motion.div
         className="text-center mb-16"
@@ -40,7 +40,7 @@ const AboutSection = () => {
       </motion.div>
 
       {/* Horizontal timeline */}
-      <div className="relative mb-24">
+      <div className="relative mb-12">
         <div className="overflow-x-auto pb-6 scrollbar-hide">
           <div className="flex gap-6 min-w-max px-4">
             {milestones.map((item, i) => (

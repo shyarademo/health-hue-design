@@ -17,7 +17,7 @@ const ServicesSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="services" className="section-padding bg-secondary/30" ref={ref}>
+    <section id="services" className="section-padding bg-secondary/30 scroll-mt-20" ref={ref}>
       <motion.div
         className="text-center mb-16"
         initial={{ opacity: 0, y: 30 }}

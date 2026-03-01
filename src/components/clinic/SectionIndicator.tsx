@@ -8,6 +8,7 @@ const sections = [
   { id: "doctors", label: "Doctors" },
   { id: "testimonials", label: "Testimonials" },
   { id: "gallery", label: "Gallery" },
+  { id: "whychooseus", label: "Why Us" },
   { id: "faq", label: "FAQ" },
 ];
 

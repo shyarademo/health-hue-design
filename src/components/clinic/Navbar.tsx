@@ -9,6 +9,7 @@ const navItems = [
   { label: "Doctors", href: "#doctors" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Gallery", href: "#gallery" },
+  { label: "Why Us", href: "#whychooseus" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -31,16 +32,16 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+        className={`fixed top-4 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass-strong rounded-full px-6 py-3 shadow-xl"
-            : "bg-transparent px-8 py-5 w-full max-w-7xl"
+            ? "left-1/2 -translate-x-1/2 glass-strong rounded-full px-5 py-2.5 shadow-xl max-w-fit"
+            : "left-0 right-0 px-6 md:px-12 lg:px-20 py-5"
         }`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="flex items-center justify-between">
+        <div className={`flex items-center justify-between ${!scrolled ? "max-w-7xl mx-auto" : ""}`}>
           <motion.a
             href="#hero"
             onClick={(e) => { e.preventDefault(); scrollTo("#hero"); }}
@@ -56,12 +57,12 @@ const Navbar = () => {
           </motion.a>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-0.5">
             {navItems.map((item) => (
               <motion.button
                 key={item.label}
                 onClick={() => scrollTo(item.href)}
-                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-full transition-colors hover:bg-secondary"
+                className="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-full transition-colors hover:bg-secondary whitespace-nowrap"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

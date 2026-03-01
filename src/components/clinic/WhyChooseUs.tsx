@@ -49,7 +49,7 @@ const WhyChooseUs = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding bg-secondary/30" ref={ref}>
+    <section id="whychooseus" className="section-padding bg-secondary/30 scroll-mt-20" ref={ref}>
       <motion.div
         className="text-center mb-16"
         initial={{ opacity: 0, y: 30 }}

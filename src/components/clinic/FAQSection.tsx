@@ -37,7 +37,7 @@ const FAQSection = () => {
   );
 
   return (
-    <section id="faq" className="section-padding" ref={ref}>
+    <section id="faq" className="section-padding scroll-mt-20" ref={ref}>
       <motion.div
         className="text-center mb-12"
         initial={{ opacity: 0, y: 30 }}
