@@ -3,11 +3,11 @@ import { useRef, useState } from "react";
 import { Quote } from "lucide-react";
 
 const doctors = [
-  { name: "Dr. Sarah Mitchell", role: "Chief Medical Officer", specialty: "Internal Medicine", exp: "20+ years", quote: "Medicine is not just science — it's the art of caring.", avatar: "SM" },
-  { name: "Dr. James Chen", role: "Head of Pediatrics", specialty: "Pediatric Care", exp: "15+ years", quote: "Every child deserves a healthy start to life.", avatar: "JC" },
-  { name: "Dr. Amara Obi", role: "Lead Diagnostician", specialty: "Diagnostic Medicine", exp: "12+ years", quote: "Accurate diagnosis is the foundation of healing.", avatar: "AO" },
-  { name: "Dr. Elena Volkov", role: "Women's Health Lead", specialty: "Gynecology", exp: "18+ years", quote: "Empowering women through comprehensive care.", avatar: "EV" },
-  { name: "Dr. David Park", role: "Preventive Care", specialty: "Wellness & Prevention", exp: "10+ years", quote: "Prevention today means a healthier tomorrow.", avatar: "DP" },
+  { name: "Dr. Rajesh Sharma", role: "Chief Medical Officer", specialty: "Internal Medicine", exp: "20+ years", quote: "Medicine is not just science — it's the art of listening to your patient.", avatar: "RS" },
+  { name: "Dr. Priya Nair", role: "Head of Pediatrics", specialty: "Pediatric Care", exp: "15+ years", quote: "Every child deserves a healthy, happy start to life.", avatar: "PN" },
+  { name: "Dr. Arun Patel", role: "Lead Diagnostician", specialty: "Diagnostic Medicine", exp: "12+ years", quote: "Accurate diagnosis is the foundation of effective treatment.", avatar: "AP" },
+  { name: "Dr. Sneha Gupta", role: "Women's Health Lead", specialty: "Gynaecology", exp: "18+ years", quote: "Empowering women through comprehensive, compassionate care.", avatar: "SG" },
+  { name: "Dr. Vikram Singh", role: "Preventive Care & Wellness", specialty: "Wellness & Prevention", exp: "10+ years", quote: "Prevention today means a healthier, longer tomorrow.", avatar: "VS" },
 ];
 
 const DoctorsSection = () => {
