@@ -4,7 +4,6 @@ import { ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import FloatingCTA from "./FloatingCTA";
 
 const pageVariants = {
   initial: { opacity: 0, y: 16 },
