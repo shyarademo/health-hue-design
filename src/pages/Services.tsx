@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { Stethoscope, Baby, FlaskConical, HeartPulse, Shield, Brain, Bone, Eye } from "lucide-react";
 import Layout from "@/components/clinic/Layout";
@@ -37,12 +37,12 @@ const Services = () => {
             <motion.div
               key={service.title}
               className="glass rounded-2xl p-6 cursor-pointer transition-shadow hover:shadow-xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + i * 0.08 }}
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ delay: 0.1 + i * 0.1, duration: 0.6 }}
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -8, boxShadow: "0 20px 40px -15px rgba(0,0,0,0.15)" }}
             >
               <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-4`}>
                 <service.icon className="w-7 h-7 text-white" />
