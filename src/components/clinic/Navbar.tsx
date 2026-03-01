@@ -15,7 +15,7 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ];
 
-const Navbar = () => {
+const Navbar = ({ offsetTop }: { offsetTop?: boolean }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -47,7 +47,7 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${offsetTop ? "top-[36px]" : "top-0"} ${
           scrolled
             ? "bg-background/80 backdrop-blur-lg shadow-lg py-2 px-4 md:px-8 lg:px-20"
             : "bg-transparent px-4 md:px-8 lg:px-20 py-4"

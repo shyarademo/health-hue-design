@@ -13,6 +13,12 @@ import Gallery from "./pages/Gallery";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import WaitingHome from "./pages/waiting/WaitingHome";
+import WaitingDoctors from "./pages/waiting/WaitingDoctors";
+import WaitingBlogs from "./pages/waiting/WaitingBlogs";
+import WaitingBlogPost from "./pages/waiting/WaitingBlogPost";
+import WaitingEquipment from "./pages/waiting/WaitingEquipment";
+import WaitingTips from "./pages/waiting/WaitingTips";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +38,12 @@ const App = () => (
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/waiting" element={<WaitingHome />} />
+            <Route path="/waiting/doctors" element={<WaitingDoctors />} />
+            <Route path="/waiting/blogs" element={<WaitingBlogs />} />
+            <Route path="/waiting/blog/:slug" element={<WaitingBlogPost />} />
+            <Route path="/waiting/equipment" element={<WaitingEquipment />} />
+            <Route path="/waiting/tips" element={<WaitingTips />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
