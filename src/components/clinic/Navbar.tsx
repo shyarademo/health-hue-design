@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Heart, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -21,6 +21,9 @@ const Navbar = ({ offsetTop }: { offsetTop?: boolean }) => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const fromWaiting = searchParams.get("from") === "waiting";
+  const suffix = fromWaiting ? "?from=waiting" : "";
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -57,7 +60,7 @@ const Navbar = ({ offsetTop }: { offsetTop?: boolean }) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <Link to="/" className="flex items-center gap-2 text-foreground shrink-0">
+          <Link to={`/${suffix}`} className="flex items-center gap-2 text-foreground shrink-0">
             <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg gradient-teal flex items-center justify-center">
                 <Heart className="w-4 h-4 text-primary-foreground" />
@@ -73,7 +76,7 @@ const Navbar = ({ offsetTop }: { offsetTop?: boolean }) => {
             {navItems.map((item) => (
               <motion.div key={item.label} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
-                  to={item.to}
+                  to={`${item.to}${suffix}`}
                   className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors whitespace-nowrap ${
                     location.pathname === item.to
                       ? "text-primary bg-primary/10"
@@ -143,7 +146,7 @@ const Navbar = ({ offsetTop }: { offsetTop?: boolean }) => {
 
               {/* Header with logo and close */}
               <div className="flex items-center justify-between px-6 pb-4 flex-shrink-0">
-                <Link to="/" className="flex items-center gap-2 text-foreground" onClick={() => setMobileOpen(false)}>
+                <Link to={`/${suffix}`} className="flex items-center gap-2 text-foreground" onClick={() => setMobileOpen(false)}>
                   <div className="w-8 h-8 rounded-lg gradient-teal flex items-center justify-center">
                     <Heart className="w-4 h-4 text-primary-foreground" />
                   </div>
@@ -167,7 +170,7 @@ const Navbar = ({ offsetTop }: { offsetTop?: boolean }) => {
                   {navItems.map((item, i) => (
                     <motion.div key={item.label} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                       <Link
-                        to={item.to}
+                        to={`${item.to}${suffix}`}
                         onClick={() => setMobileOpen(false)}
                         className={`block text-left px-4 py-3 text-base font-medium rounded-xl transition-colors ${
                           location.pathname === item.to
