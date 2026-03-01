@@ -18,7 +18,7 @@ const DoctorsSection = () => {
   const activeDoctor = doctors[activeIndex];
 
   return (
-    <section id="doctors" className="section-padding" ref={ref}>
+    <section id="doctors" className="section-padding scroll-mt-20" ref={ref}>
       <motion.div
         className="text-center mb-16"
         initial={{ opacity: 0, y: 30 }}

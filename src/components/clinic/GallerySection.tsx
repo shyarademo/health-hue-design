@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { X, ZoomIn } from "lucide-react";
 
 const galleryItems = [
-  { title: "Modern Reception", desc: "Welcoming and comfortable waiting area", span: "md:col-span-2 md:row-span-2", bg: "from-primary/20 to-primary/5" },
+  { title: "Modern Reception", desc: "Welcoming and comfortable waiting area", span: "md:col-span-2", bg: "from-primary/20 to-primary/5" },
   { title: "Consultation Room", desc: "Private, well-equipped examination rooms", span: "", bg: "from-emerald-500/20 to-emerald-500/5" },
   { title: "Diagnostic Lab", desc: "Advanced laboratory equipment", span: "", bg: "from-violet-500/20 to-violet-500/5" },
   { title: "Pediatric Wing", desc: "Child-friendly treatment spaces", span: "md:col-span-2", bg: "from-amber-500/20 to-amber-500/5" },
@@ -18,7 +18,7 @@ const GallerySection = () => {
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   return (
-    <section id="gallery" className="section-padding" ref={ref}>
+    <section id="gallery" className="section-padding scroll-mt-20" ref={ref}>
       <motion.div
         className="text-center mb-16"
         initial={{ opacity: 0, y: 30 }}
