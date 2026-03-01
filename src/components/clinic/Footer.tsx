@@ -92,7 +92,7 @@ const Footer = () => {
           {/* Column 3: Links + Social */}
           <div>
             <h4 className="font-bold text-foreground mb-4">Quick Links</h4>
-            <div className="grid grid-cols-2 gap-2 mb-8">
+            <div className="grid grid-cols-2 gap-2 mb-6">
               {quickLinks.map((link) => (
                 <a
                   key={link}
@@ -103,6 +103,15 @@ const Footer = () => {
                 </a>
               ))}
             </div>
+
+            {/* Waiting Room link */}
+            <a
+              href="/waiting"
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors mb-6"
+            >
+              🏥 In our waiting room? Tap here
+            </a>
+
             <div className="flex gap-3">
               {socials.map(({ icon: Icon, label }) => (
                 <motion.button

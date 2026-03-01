@@ -44,7 +44,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </motion.main>
       </AnimatePresence>
       <Footer />
-      <FloatingCTA />
     </div>
   );
 };
