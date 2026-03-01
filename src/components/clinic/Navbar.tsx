@@ -87,6 +87,16 @@ const Navbar = ({ offsetTop }: { offsetTop?: boolean }) => {
                 </Link>
               </motion.div>
             ))}
+            {!fromWaiting && (
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  to="/waiting"
+                  className="ml-1 px-3 py-1.5 text-sm font-medium rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors whitespace-nowrap"
+                >
+                  🏥 Waiting Room
+                </Link>
+              </motion.div>
+            )}
             {mounted && (
               <motion.button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -182,6 +192,17 @@ const Navbar = ({ offsetTop }: { offsetTop?: boolean }) => {
                       </Link>
                     </motion.div>
                   ))}
+                  {!fromWaiting && (
+                    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: navItems.length * 0.05 }}>
+                      <Link
+                        to="/waiting"
+                        onClick={() => setMobileOpen(false)}
+                        className="block text-left px-4 py-3 text-base font-medium rounded-xl bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                      >
+                        🏥 Waiting Room
+                      </Link>
+                    </motion.div>
+                  )}
                   {mounted && (
                     <motion.button
                       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
