@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Activity, Stethoscope, Shield, HeartPulse, Pill, Syringe } from "lucide-react";
+import { Link } from "react-router-dom";
+import heroImage from "@/assets/hero-clinic.jpg";
 
 const words = ["Health", "Family", "Future", "Wellbeing"];
 
@@ -47,16 +49,14 @@ const CountUp = ({ target, suffix }: { target: number; suffix: string }) => {
     return () => clearInterval(interval);
   }, [started, target]);
 
-  return (
-    <span>
-      {count.toLocaleString()}
-      {suffix}
-    </span>
-  );
+  return <span>{count.toLocaleString()}{suffix}</span>;
 };
 
 const HeroSection = () => {
   const [wordIndex, setWordIndex] = useState(0);
+  const { scrollY } = useScroll();
+  const bgY = useTransform(scrollY, [0, 600], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0.3]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -65,23 +65,19 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const scrollToAbout = () => {
-    document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden scroll-mt-20">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary via-background to-secondary/50" />
-      
-      {/* Diagonal split accent */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-primary/5 to-transparent" style={{ clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)" }} />
+      {/* Parallax background image */}
+      <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
+        <img src={heroImage} alt="MediCare Clinic Reception" className="w-full h-[120%] object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40 dark:from-background/98 dark:via-background/90 dark:to-background/60" />
+      </motion.div>
 
       {/* Floating medical icons */}
       {floatingIcons.map(({ Icon, x, y, delay }, i) => (
         <motion.div
           key={i}
-          className="absolute hidden md:flex items-center justify-center w-12 h-12 rounded-2xl glass text-primary/40"
+          className="absolute hidden md:flex items-center justify-center w-12 h-12 rounded-2xl glass text-primary/40 z-10"
           style={{ left: x, top: y }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -96,14 +92,10 @@ const HeroSection = () => {
         </motion.div>
       ))}
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-28">
+      <motion.div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-28" style={{ opacity }}>
         <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse-gentle" />
               Trusted Healthcare Since 2002 — Bengaluru
             </span>
@@ -122,9 +114,9 @@ const HeroSection = () => {
               <motion.span
                 key={wordIndex}
                 className="text-gradient font-display italic"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
+                initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -30, filter: "blur(8px)" }}
                 transition={{ duration: 0.5 }}
               >
                 {words[wordIndex]}
@@ -148,28 +140,25 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <motion.button
-              onClick={scrollToAbout}
-              className="group relative px-8 py-4 rounded-full gradient-teal text-primary-foreground font-semibold text-lg shadow-lg shadow-primary/25 overflow-hidden"
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -10px hsl(199 89% 48% / 0.4)" }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="relative z-10">Explore Our Care</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80"
-                initial={{ x: "100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.button>
-            <motion.button
-              onClick={() => document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 rounded-full border-2 border-border text-foreground font-semibold text-lg hover:bg-secondary transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Our Services
-            </motion.button>
+            <Link to="/contact">
+              <motion.button
+                className="group relative px-8 py-4 rounded-full gradient-teal text-primary-foreground font-semibold text-lg shadow-lg shadow-primary/25 overflow-hidden"
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -10px hsl(199 89% 48% / 0.4)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="relative z-10">Book Appointment</span>
+                <motion.div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" initial={{ x: "100%" }} whileHover={{ x: 0 }} transition={{ duration: 0.3 }} />
+              </motion.button>
+            </Link>
+            <Link to="/services">
+              <motion.button
+                className="px-8 py-4 rounded-full border-2 border-border text-foreground font-semibold text-lg hover:bg-secondary transition-colors backdrop-blur-sm"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Our Services
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
 
@@ -183,7 +172,7 @@ const HeroSection = () => {
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              className="glass rounded-2xl p-5 text-center"
+              className="glass rounded-2xl p-5 text-center backdrop-blur-md"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2 + i * 0.15 }}
@@ -196,20 +185,16 @@ const HeroSection = () => {
             </motion.div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
         <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
-          <motion.div
-            className="w-1.5 h-1.5 rounded-full bg-primary"
-            animate={{ y: [0, 16, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+          <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" animate={{ y: [0, 16, 0] }} transition={{ duration: 2, repeat: Infinity }} />
         </div>
       </motion.div>
     </section>

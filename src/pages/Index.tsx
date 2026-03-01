@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, Stethoscope, Baby, FlaskConical, HeartPulse, Star } from "lucide-react";
 import Layout from "@/components/clinic/Layout";
@@ -59,10 +59,10 @@ const Index = () => {
             <motion.div
               key={s.title}
               className="glass rounded-2xl p-6 hover:shadow-lg transition-shadow"
-              initial={{ opacity: 0, y: 20 }}
-              animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + i * 0.1 }}
-              whileHover={{ y: -4 }}
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              animate={servicesInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ delay: 0.1 + i * 0.12, duration: 0.6 }}
+              whileHover={{ y: -6, boxShadow: "0 15px 30px -10px rgba(0,0,0,0.12)" }}
             >
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center mb-4`}>
                 <s.icon className="w-6 h-6 text-white" />
@@ -92,9 +92,10 @@ const Index = () => {
             <motion.div
               key={t.name}
               className="glass rounded-2xl p-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={testimonialsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + i * 0.1 }}
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={testimonialsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ delay: 0.15 + i * 0.15, duration: 0.5, type: "spring", stiffness: 100 }}
+              whileHover={{ y: -4 }}
             >
               <div className="flex gap-1 mb-3">
                 {Array.from({ length: t.rating }).map((_, j) => (

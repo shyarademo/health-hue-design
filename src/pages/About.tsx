@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Heart, Shield, Users, Clock, Award, Star, CheckCircle, Target } from "lucide-react";
 import Layout from "@/components/clinic/Layout";
