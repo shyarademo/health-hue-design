@@ -1,9 +1,16 @@
 import { useEffect } from "react";
 import { useLocation, useSearchParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import FloatingCTA from "./FloatingCTA";
+
+const pageVariants = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -12 },
+};
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
@@ -24,7 +31,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       )}
       <Navbar offsetTop={fromWaiting} />
-      <main>{children}</main>
+      <AnimatePresence mode="wait">
+        <motion.main
+          key={pathname}
+          variants={pageVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          {children}
+        </motion.main>
+      </AnimatePresence>
       <Footer />
       <FloatingCTA />
     </div>
